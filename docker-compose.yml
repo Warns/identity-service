@@ -1,0 +1,42 @@
+---
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      ALLOWED_HOSTS: secrethub://alnuaimi/identity/ALLOWED_HOSTS
+      DATABASE_HOST: secrethub://alnuaimi/identity/DATABASE_HOST
+      DATABASE_NAME: secrethub://alnuaimi/identity/DATABASE_NAME
+      DATABASE_PASSWORD: secrethub://alnuaimi/identity/DATABASE_PASSWORD
+      DATABASE_USER: secrethub://alnuaimi/identity/DATABASE_USER
+      DEBUG: secrethub://alnuaimi/identity/DEBUG
+      SECRET_KEY: secrethub://alnuaimi/identity/SECRET_KEY
+networks:
+      - internal
+  web:
+    build: .
+    volumes:
+      - ./src/:/app/
+    container_name: sociallme-iam
+    ports:
+      - 8000:8000
+    networks:
+      - internal
+    depends_on:
+      - postgres
+    stdin_open: true
+    tty: true
+    environment:
+      ALLOWED_HOSTS: secrethub://alnuaimi/identity/ALLOWED_HOSTS
+      DATABASE_HOST: secrethub://alnuaimi/identity/DATABASE_HOST
+      DATABASE_NAME: secrethub://alnuaimi/identity/DATABASE_NAME
+      DATABASE_PASSWORD: secrethub://alnuaimi/identity/DATABASE_PASSWORD
+      DATABASE_USER: secrethub://alnuaimi/identity/DATABASE_USER
+      DEBUG: secrethub://alnuaimi/identity/DEBUG
+      SECRET_KEY: secrethub://alnuaimi/identity/SECRET_KEY
+
+
+networks:
+  internal:

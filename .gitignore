@@ -1,0 +1,12 @@
+.env
+*.sqlite3
+.vscode
+.providers.tf.un~
+*.swp
+
+# Local terraform directories
+**/.terraform/*
+.terraform
+# .tfstate files
+*.tfstate
+*.tfstate.*
