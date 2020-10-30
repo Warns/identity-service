@@ -17,6 +17,8 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 RUN pip install django-environ
 
+RUN source .env
+
 COPY ./src .
 
 # install secrethub
