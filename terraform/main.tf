@@ -13,7 +13,6 @@ terraform {
     resource_group_name  = "tstate-rg"
     storage_account_name = "tstateidentity15466"
     container_name       = "tstate"
-    access_key           = "3eJ1HRfV/D7TavxKmhcxwvap4ZvEBOhz+NpWSHiAkmXDL4nKVHTKyx/qSJCUoITFzmJUoWIQsV/7jvVRO5UZuA=="
     key                  = "terraform.tfstate"
   }
 }
